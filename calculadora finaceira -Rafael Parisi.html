@@ -35,6 +35,11 @@
         <input type="number" id="ipt_umidade">
         <br>
         <br>
+        <label for="ipt_tempeumidade" style="color:aliceblue">Insira o número de dias no qual o silo registrou de umidade e temperatura 
+            fora do adequado</label><br>
+        <input type="number" id="ipt_tempeumidade">
+        <br>
+        <br>
         <label for="ipt_silo" style="color:aliceblue">Insira o porte dos silos (Pequeno, Médio ou Grande)</label><br>
         <input type="text" id="ipt_silo">
         <button onclick="calcular()">Analisar dados</button>
@@ -50,19 +55,20 @@
     function calcular() {
         var empresa = ipt_empresa.value;
         var anoAvaliação = Number(ipt_ano.value);
+        var diaTempeUmidade = ipt_tempeumidade.value;
         var diaTemperaturaExcedida = Number(ipt_temperatura.value);
         var diaUmidadeExcedida = Number(ipt_umidade.value);
-        var diasTotais = diaTemperaturaExcedida + diaUmidadeExcedida;
+        var diasTotais = diaTemperaturaExcedida + diaUmidadeExcedida + diaTempeUmidade;
         var silo = ipt_silo.value;
         var valorSilo=0;
 
         if (silo == "Pequeno") {
             var valorSilo=500;
             if (diasTotais < 5 && diasTotais >= 0) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
             }
             else if (diasTotais > 5) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300}  reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300}  reais para a empresa, durante o contexto analisado`
             } else{
                 div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
             }
@@ -70,10 +76,10 @@
         if (silo == "Médio") {
             var valorSilo = 5000;
             if (diasTotais < 5 && diasTotais >= 0) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
             }
             else if (diasTotais > 5) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
             } else{
                 div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
             }
@@ -81,15 +87,15 @@
         if (silo == "Grande") {
             var valorSilo = 10000;
             if (diasTotais < 5 && diasTotais >= 0) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
             }
             else if (diasTotais > 5) {
-                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício que ultrapassa R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
+                div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas mais que ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício que ultrapassa R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado`
             } else{
                 div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Insira um número válido de dias`
             }
 
-        }
+        } 
 
 
     }
