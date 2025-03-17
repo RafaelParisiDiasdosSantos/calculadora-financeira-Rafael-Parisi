@@ -53,7 +53,7 @@
             <br>
         </label>
     </div>
-    <div id="div_resposta"></div>
+    <div id="div_resposta" style="background-color: darkcyan;"></div>
 </body>
 <script>
     function calcular() {
@@ -79,12 +79,12 @@
         }
 
         if (diasTotais < 5 && diasTotais >= 0) {
-            div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto analisado.`
+            div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:darkcyan"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - dentro da faixa de erro padrão, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300} reais para a empresa, durante o contexto observado.`
         }
         else if (diasTotais > 5) {
-            div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300}  reais para a empresa, durante o contexto analisado.`
+            div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:darkcyan"> Analisamos que, no ano de ${anoAvaliação}, em nossa empresa parceira, ${empresa}, ocorreu um desperdício em ${diasTotais} dias - acima da faixa adequada de falhas, de cinco dias/ano.  Foram afetadas até ${valorSilo * diasTotais} toneladas, sem a aplicação de nosso produto. Gerando um desperdício aproximado de R$${valorSilo * diasTotais * 2300}  reais para a empresa, durante o contexto observado.`
         } else {
-           div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:white">Insira um número válido de dias.` 
+           div_resposta.innerHTML = `<div style="background-color: rgb(14, 14, 113); color:darkcyan">Insira um número válido de dias.` 
         }
     }
 </script>
